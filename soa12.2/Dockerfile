@@ -7,7 +7,7 @@ MAINTAINER Carol Guival <guillen.carolina@gmail.com>
 # Environment variables required for this build (do NOT change)
 # -------------------------------------------------------------
 ENV JAVA_RPM jdk-8u65-linux-x64.rpm
-ENV WLS_PKG fmw_12.2.1.0.0_wls_Disk1_1of1.zip
+ENV FMW_PKG fmw_12.2.1.0.0_wls_Disk1_1of1.zip
 ENV JAVA_HOME /usr/java/default
 ENV MW_HOME /u01/oracle/fmw12.2
 ENV WL_HOME $MW_HOME/wlserver
@@ -35,15 +35,15 @@ RUN chown oracle:oracle -R /u01
 USER oracle
 WORKDIR /u01/tmp/
 RUN unzip $WLS_PKG -d wls_install
-WORKDIR /u01/tmp/wls_install/
-RUN java -jar fmw* -silent -invPtrLoc /u01/tmp/oraInst.loc -responseFile /u01/tmp/responseWls12.2.file 
+RUN cd wls_install 
+RUN java -jar fmw* -silent -invPtrLoc /u01/tmp/oraInst.loc -responseFile /u01/tmp/responseWls12.2.file -jreLoc $JAVA_HOME 
 
 WORKDIR $MW_HOME
 
 ENV PATH $PATH:$MW_HOME/oracle_common/common/bin
 
 #clean
-RUN rm -r /u01/tmp/*
+#RUN rm -r /u01/tmp/*
 
 # Define default command to start bash. 
 CMD ["bash"]

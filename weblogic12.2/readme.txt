@@ -1,8 +1,8 @@
 #build the image
-docker build -t krol/weblogic:12.2.1 .
+docker build -t krol/weblogic12.2.1:latest .
 
 #run the image
-docker run --rm=true -it krol/weblogic:12.2.1 /bin/bash 
+docker run --rm=true -it krol/weblogic12.2.1:latest /bin/bash 
 
 #users
 groups userX
