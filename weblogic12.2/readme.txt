@@ -1,5 +1,5 @@
 #build the image
-docker build -t krol/weblogic12.2.1:latest .
+docker build -t krol/oracle-weblogic12.2.1:latest .
 
 #run the image
 docker run --rm=true -it krol/weblogic12.2.1:latest /bin/bash 
